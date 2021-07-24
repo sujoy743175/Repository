@@ -1,17 +1,13 @@
 import os, shutil
 
 try:
-    path="//home//robotics//Downloads"
-    # path1 = os.path.join(path, book)
-    # os.mkdir(path1)
+    path="//home//robotics//Downloads/book"    
     for (path, dirs, files) in os.walk(path):
         for file in files:
-            extension=file.split('.')[1] # will take the 2nd object after dot
+            extension=file.split('.')[-1] # will take the last object after dot
             print(extension)
-            source = ("//home//robotics//Downloads//"+file)
-            destination = ("//home//robotics//Downloads//"+extension)
-            tt = os.path.exists(destination)
-            print(tt)
+            source = (path+"//"+file)
+            destination = (path+"//"+extension)
             if os.path.exists(destination):
                 if file.endswith(extension):
                     shutil.move(source, destination)
@@ -19,4 +15,4 @@ try:
                 os.mkdir(destination)
                 shutil.move(source, destination)
 except:
-    print("an error occured")
+    print("This should never happened")
